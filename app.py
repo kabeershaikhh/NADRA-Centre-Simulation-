@@ -477,29 +477,27 @@ else:
                     cnt_parts.append(f"<div><span style='color:#64748B; font-weight:600;'>∑ [{c_lbl}] Service:</span> <strong style='color:#0F172A; font-size:15px;'>{c_sum:,} min</strong></div>")
                 counter_sums_html = "".join(cnt_parts)
 
-        st.markdown(f"""
-        <div class="totals-box">
-            <div style="font-size: 13px; font-weight: 700; color: #1E3A8A; text-transform: uppercase; margin-bottom: 10px;">
-                Simulation Ledger Column Totals & Averages
-            </div>
-            <!-- Row 1: Column Totals -->
-            <div style="display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 8px;">
-                <div><span style="color:#64748B; font-weight:600;">Total Service Time (∑ Service):</span> <strong style="color:#0F172A; font-size:15px;">{tot_serv:,} min</strong></div>
-                {counter_sums_html}
-                <div><span style="color:#64748B; font-weight:600;">Total Waiting Time (∑ Wait):</span> <strong style="color:#0F172A; font-size:15px;">{tot_wait:,} min</strong></div>
-                <div><span style="color:#64748B; font-weight:600;">Total Time in System (∑ System):</span> <strong style="color:#0F172A; font-size:15px;">{tot_sys:,} min</strong></div>
-            </div>
-            <!-- Divider -->
-            <div style="border-top: 1px dashed #CBD5E1; margin: 8px 0 10px 0;"></div>
-            <!-- Row 2: Classroom Averages -->
-            <div style="display: flex; gap: 28px; flex-wrap: wrap;">
-                <div><span style="color:#64748B; font-weight:600;">Avg Service Time:</span> <strong style="color:#0F172A; font-size:15px;">{avg_serv} min</strong></div>
-                <div><span style="color:#64748B; font-weight:600;">Avg Waiting Time:</span> <strong style="color:#0F172A; font-size:15px;">{avg_wait} min</strong></div>
-                <div><span style="color:#64748B; font-weight:600;">Avg Citizen Time in System:</span> <strong style="color:#0F172A; font-size:15px;">{avg_sys} min</strong></div>
-                <div><span style="color:#64748B; font-weight:600;">Filtered Citizens:</span> <strong style="color:#0F172A; font-size:15px;">{tot_citizens:,}</strong></div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        totals_html = (
+            f'<div class="totals-box">'
+            f'<div style="font-size: 13px; font-weight: 700; color: #1E3A8A; text-transform: uppercase; margin-bottom: 10px;">'
+            f'Simulation Ledger Column Totals & Averages'
+            f'</div>'
+            f'<div style="display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 8px;">'
+            f'<div><span style="color:#64748B; font-weight:600;">Total Service Time (∑ Service):</span> <strong style="color:#0F172A; font-size:15px;">{tot_serv:,} min</strong></div>'
+            f'{counter_sums_html}'
+            f'<div><span style="color:#64748B; font-weight:600;">Total Waiting Time (∑ Wait):</span> <strong style="color:#0F172A; font-size:15px;">{tot_wait:,} min</strong></div>'
+            f'<div><span style="color:#64748B; font-weight:600;">Total Time in System (∑ System):</span> <strong style="color:#0F172A; font-size:15px;">{tot_sys:,} min</strong></div>'
+            f'</div>'
+            f'<div style="border-top: 1px dashed #CBD5E1; margin: 8px 0 10px 0;"></div>'
+            f'<div style="display: flex; gap: 28px; flex-wrap: wrap;">'
+            f'<div><span style="color:#64748B; font-weight:600;">Avg Service Time:</span> <strong style="color:#0F172A; font-size:15px;">{avg_serv} min</strong></div>'
+            f'<div><span style="color:#64748B; font-weight:600;">Avg Waiting Time:</span> <strong style="color:#0F172A; font-size:15px;">{avg_wait} min</strong></div>'
+            f'<div><span style="color:#64748B; font-weight:600;">Avg Citizen Time in System:</span> <strong style="color:#0F172A; font-size:15px;">{avg_sys} min</strong></div>'
+            f'<div><span style="color:#64748B; font-weight:600;">Filtered Citizens:</span> <strong style="color:#0F172A; font-size:15px;">{tot_citizens:,}</strong></div>'
+            f'</div>'
+            f'</div>'
+        )
+        st.markdown(totals_html, unsafe_allow_html=True)
 
     # TAB 2: Service & Counter Summary
     with tab2:
